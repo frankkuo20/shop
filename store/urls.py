@@ -4,5 +4,5 @@ from store import views
 
 urlpatterns = [
     path('category/', views.category),
-    path('categoryCreate', views.categoryCreate)
+    path('categoryCreate/', views.categoryCreate)
 ]

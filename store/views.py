@@ -16,4 +16,4 @@ def categoryCreate(request):
         category = Category()
         category.name = name
         category.save()
-        return redirect('/store/category')
+        return redirect('/store/category/')
