@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from store.forms import CategoryForm
 from store.models import Category
 
 
@@ -10,10 +11,12 @@ def category(request):
 
 def categoryCreate(request):
     if request.method == 'GET':
-        return render(request, 'store/categoryCreate.html')
+        categoryForm = CategoryForm()
+        return render(request, 'store/categoryCreate.html', {'categoryForm':categoryForm})
     elif request.method == 'POST':
-        name = request.POST.get('name')
-        category = Category()
-        category.name = name
-        category.save()
+        categoryForm = CategoryForm(request.POST)
+        if not categoryForm.is_valid():
+            return render(request, 'store/categoryCreate.html', {'categoryForm':categoryForm})
+
+        categoryForm.save()
         return redirect('/store/category/')

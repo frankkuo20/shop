@@ -6,10 +6,7 @@
 <h3>新增類別</h3>
 <form method="post" action="/store/categoryCreate/">
   {% csrf_token %}
-  <div>
-    <label for="name">名稱</label>
-    <input id="name" name="name">
-  </div>
+  {{ categoryForm.as_p }}
 
   <input type="submit" value="儲存">
 </form>
