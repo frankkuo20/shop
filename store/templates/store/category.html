@@ -1,19 +1,13 @@
-<!doctype html>
-<html>
-<head>
-
-</head>
-<body>
-<a href="{% url 'store:categoryCreate' %}">新增</a>
-<table>
-  <tr>
-    <th>類別</th>
-  </tr>
-  {% for category in categorys %}
+{% extends 'main/base.html' %}
+{% block content %}
+  <table>
     <tr>
-      <td>{{ category.name }}</td>
+      <th>類別</th>
     </tr>
-  {% endfor %}
-</table>
-</body>
-</html>
+    {% for category in categorys %}
+      <tr>
+        <td>{{ category.name }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+{% endblock %}

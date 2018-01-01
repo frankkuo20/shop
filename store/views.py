@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, redirect
 
 # Create your views here.
@@ -11,6 +12,7 @@ def category(request):
     categorys = Category.objects.all()
     return render(request, 'store/category.html', {'categorys':categorys})
 
+
 def categoryCreate(request):
     if request.method == 'GET':
         categoryForm = CategoryForm()
@@ -21,4 +23,6 @@ def categoryCreate(request):
             return render(request, 'store/categoryCreate.html', {'categoryForm':categoryForm})
 
         categoryForm.save()
+        messages.success(request, '新增成功')
+        messages.debug(request, 'debug')
         return redirect(reverse('store:category'))

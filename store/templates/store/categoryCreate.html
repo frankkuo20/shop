@@ -1,15 +1,12 @@
-<!doctype html>
-<html>
-<head></head>
-<body>
+{% extends 'main/base.html' %}
+{% block content %}
 
-<h3>新增類別</h3>
-<form method="post" action="{% url 'store:categoryCreate' %}">
-  {% csrf_token %}
-  {{ categoryForm.as_p }}
+  <h3>新增類別</h3>
+  <form method="post" action="{% url 'store:categoryCreate' %}">
+    {% csrf_token %}
+    {{ categoryForm.as_p }}
 
-  <input type="submit" value="儲存">
-</form>
+    <input type="submit" value="儲存">
+  </form>
 
-</body>
-</html>
+{% endblock %}
