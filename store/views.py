@@ -1,5 +1,5 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
 from django.urls import reverse
@@ -24,5 +24,21 @@ def categoryCreate(request):
 
         categoryForm.save()
         messages.success(request, '新增成功')
-        messages.debug(request, 'debug')
         return redirect(reverse('store:category'))
+
+
+def categoryUpdate(request, id):
+    category = get_object_or_404(Category, id=id)
+    # category = Category.objects.get(id=id)
+    if request.method == 'GET':
+        categoryForm = CategoryForm(instance=category)
+        return render(request, 'store/categoryUpdate.html', {'categoryForm': categoryForm})
+    elif request.method == 'POST':
+        categoryForm = CategoryForm(request.POST, instance=category)
+        if not categoryForm.is_valid():
+            return render(request, 'store/categoryUpdate.html', {'categoryForm':categoryForm})
+
+        categoryForm.save()
+        messages.success(request, '修改成功')
+        return redirect(reverse('store:category'))
+

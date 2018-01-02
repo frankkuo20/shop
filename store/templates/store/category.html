@@ -7,6 +7,7 @@
     {% for category in categorys %}
       <tr>
         <td>{{ category.name }}</td>
+        <td><a href="{% url 'store:categoryUpdate' category.id %}"><button>修改</button></a></td>
       </tr>
     {% endfor %}
   </table>

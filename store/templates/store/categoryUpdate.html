@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+{% block content %}
+
+  <h3>修改類別</h3>
+  <form method="post" action="{% url 'store:categoryUpdate' categoryForm.instance.id %}">
+    {% csrf_token %}
+    {{ categoryForm.as_p }}
+
+    <input type="submit" value="儲存">
+  </form>
+
+{% endblock %}
