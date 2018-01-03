@@ -7,5 +7,7 @@ app_name = 'store'
 urlpatterns = [
     path('category/', views.category, name='category'),
     path('categoryCreate/', views.categoryCreate, name='categoryCreate'),
-    path('categoryUpdate/<int:id>/', views.categoryUpdate, name='categoryUpdate')
+    path('categoryRead/<int:id>/', views.categoryRead, name='categoryRead'),
+    path('categoryUpdate/<int:id>/', views.categoryUpdate, name='categoryUpdate'),
+    path('categoryDelete/<int:id>/', views.categoryDelete, name='categoryDelete')
 ]

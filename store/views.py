@@ -10,17 +10,22 @@ from store.models import Category
 
 def category(request):
     categorys = Category.objects.all()
-    return render(request, 'store/category.html', {'categorys':categorys})
+    return render(request, 'store/category.html', {'categorys': categorys})
+
+
+def categoryRead(request, id):
+    category = get_object_or_404(Category, id=id)
+    return render(request, 'store/categoryRead.html', {'category': category})
 
 
 def categoryCreate(request):
     if request.method == 'GET':
         categoryForm = CategoryForm()
-        return render(request, 'store/categoryCreate.html', {'categoryForm':categoryForm})
+        return render(request, 'store/categoryCreate.html', {'categoryForm': categoryForm})
     elif request.method == 'POST':
         categoryForm = CategoryForm(request.POST)
         if not categoryForm.is_valid():
-            return render(request, 'store/categoryCreate.html', {'categoryForm':categoryForm})
+            return render(request, 'store/categoryCreate.html', {'categoryForm': categoryForm})
 
         categoryForm.save()
         messages.success(request, '新增成功')
@@ -36,9 +41,16 @@ def categoryUpdate(request, id):
     elif request.method == 'POST':
         categoryForm = CategoryForm(request.POST, instance=category)
         if not categoryForm.is_valid():
-            return render(request, 'store/categoryUpdate.html', {'categoryForm':categoryForm})
+            return render(request, 'store/categoryUpdate.html', {'categoryForm': categoryForm})
 
         categoryForm.save()
         messages.success(request, '修改成功')
         return redirect(reverse('store:category'))
 
+
+def categoryDelete(request, id):
+    category = get_object_or_404(Category, id=id)
+    if request.method == 'POST':
+        category.delete()
+        messages.success(request, '刪除成功')
+    return redirect(reverse('store:category'))
