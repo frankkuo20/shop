@@ -1,10 +1,26 @@
 {% extends 'main/base.html' %}
 {% block content %}
   {% if category %}
-  <div>
-  <div>
-    類別: {{ category.name }}
-  </div>
-  </div>
+    <div>
+      <div>
+        類別: {{ category.name }}
+      </div>
+      <div>
+        {% if category.item_set.all %}
+          <table>
+            <tr>
+              <th>名稱</th>
+              <th>價錢</th>
+            </tr>
+            {% for item in category.item_set.all %}
+              <tr>
+                <td>{{ item.name }}</td>
+                <td>{{ item.price }}</td>
+              </tr>
+            {% endfor %}
+          </table>
+        {% endif %}
+      </div>
+    </div>
   {% endif %}
 {% endblock %}
