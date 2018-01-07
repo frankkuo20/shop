@@ -20,5 +20,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('store/', include('store.urls')),
     path('main/', include('main.urls')),
-    re_path('^.*', include('main.urls'))
+    path('', include('main.urls')),
+
+    # re_path('^.*', include('main.urls'))
 ]
