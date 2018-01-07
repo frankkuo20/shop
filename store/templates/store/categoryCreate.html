@@ -5,7 +5,6 @@
   <form method="post" action="{% url 'store:categoryCreate' %}">
     {% csrf_token %}
     {{ categoryForm.as_p }}
-
     <input type="submit" value="儲存">
   </form>
 

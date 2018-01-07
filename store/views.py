@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
 
 from store.forms import CategoryForm, ItemForm
-from store.models import Category
+from store.models import Category, Item
 
 
 def category(request):
@@ -67,3 +67,7 @@ def itemCreate(request):
         itemForm.save()
         messages.success(request, '新增成功')
         return redirect(reverse('store:category'))
+
+def itemRead(request, id):
+    item = get_object_or_404(Item, id=id)
+    return render(request, 'store/itemRead.html', {'item': item})

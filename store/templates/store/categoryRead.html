@@ -14,7 +14,7 @@
             </tr>
             {% for item in category.item_set.all %}
               <tr>
-                <td>{{ item.name }}</td>
+                <td><a href="{% url 'store:itemRead' item.id %}">{{ item.name }}</a></td>
                 <td>{{ item.price }}</td>
               </tr>
             {% endfor %}

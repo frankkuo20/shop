@@ -1,0 +1,11 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+
+  {% if item %}
+    <p>{{ item.category.name }}</p>
+    <p>{{ item.name }}</p>
+    <p>{{ item.description|safe }}</p>
+  {% endif %}
+
+{% endblock %}
