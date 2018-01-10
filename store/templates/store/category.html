@@ -1,7 +1,9 @@
 {% extends 'main/base.html' %}
 {% block content %}
-  <a href="{% url 'store:categoryCreate' %}">新增類別</a>
-  <a href="{% url 'store:itemCreate' %}">新增商品</a>
+  {% if user.is_authenticated %}
+    <a href="{% url 'store:categoryCreate' %}">新增類別</a>
+    <a href="{% url 'store:itemCreate' %}">新增商品</a>
+  {% endif %}
   <table>
     <tr>
       <th>類別</th>

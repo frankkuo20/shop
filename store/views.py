@@ -1,4 +1,5 @@
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -18,6 +19,7 @@ def categoryRead(request, id):
     return render(request, 'store/categoryRead.html', {'category': category})
 
 
+@login_required
 def categoryCreate(request):
     if request.method == 'GET':
         categoryForm = CategoryForm()
@@ -32,6 +34,7 @@ def categoryCreate(request):
         return redirect(reverse('store:category'))
 
 
+@login_required
 def categoryUpdate(request, id):
     category = get_object_or_404(Category, id=id)
     if request.method == 'GET':
@@ -47,6 +50,7 @@ def categoryUpdate(request, id):
         return redirect(reverse('store:category'))
 
 
+@login_required
 def categoryDelete(request, id):
     category = get_object_or_404(Category, id=id)
     if request.method == 'POST':
@@ -55,6 +59,7 @@ def categoryDelete(request, id):
     return redirect(reverse('store:category'))
 
 
+@login_required
 def itemCreate(request):
     if request.method == 'GET':
         itemForm = ItemForm()
@@ -67,6 +72,7 @@ def itemCreate(request):
         itemForm.save()
         messages.success(request, '新增成功')
         return redirect(reverse('store:category'))
+
 
 def itemRead(request, id):
     item = get_object_or_404(Item, id=id)
