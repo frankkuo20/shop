@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.shortcuts import render, redirect, get_object_or_404
 
 # Create your views here.
@@ -10,7 +11,11 @@ from store.models import Category, Item
 
 
 def category(request):
-    categorys = Category.objects.all()
+
+    categorys = Category.objects.all().order_by('id')
+    paginator = Paginator(categorys, 10)
+    page = request.GET.get('page')
+    categorys = paginator.get_page(page)
     return render(request, 'store/category.html', {'categorys': categorys})
 
 
