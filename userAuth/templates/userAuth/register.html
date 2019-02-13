@@ -1,0 +1,9 @@
+{% extends 'main/base.html' %}
+{% block content %}
+  <h2>註冊</h2>
+  <form method="post" action="{% url 'userAuth:register' %}">
+    {% csrf_token %}
+    {{ registerForm.as_p }}
+    <input type="submit" value="註冊">
+  </form>
+{% endblock %}
